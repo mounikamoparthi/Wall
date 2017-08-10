@@ -1,0 +1,71 @@
+<html>
+    <title> Login Reg </title>
+    <body>
+        @{
+            ViewData["Title"] = "Home Page";
+        }
+        <h2> Registration </h2>
+        <form action= "/register" method ="post">
+                <p>
+                <label for="first_name">FirstName:</label>
+                <input type="text" id ="firstName" name="firstName">
+                </p>
+                <p>
+                <label for="last_name">LastName:</label>
+                <input type="text" id ="lastName" name="lastName">
+                </p>
+                <p>
+                <label for="emailid">Email Id:</label>
+                <input type="email" id ="emailid" name="emailid">
+
+                </p><p>
+                <label for="password">PASSWORD:</label>
+                <input type="password" id ="password" name="password">
+                </p>
+                <p>
+                <label for="reenterpassword">Reenter PASSWORD:</label>
+                <input type="password" id ="password" name="confirmPassword">
+                </p><p>
+                <input type = "hidden" name = "action" value="Register">
+                <input  type="submit" value="Register">
+                </form>
+
+                <h2> Login </h2>
+                <form action="/login" method ="post">
+                    <p>
+                    <label for="emailid">Email Id:</label>
+                    <input type="email" id ="emailid" name="emailid"
+                    </p><p>
+                    <label for="password">PASSWORD:</label>
+                    <input type="password" id ="password" name="password"
+                    </p><p>
+                    <input type = "hidden" name = "action" value="Login">
+                    <input  type="submit" value="Login">
+                    </p>
+                </form>
+                <div>
+                        @{
+                            if (@ViewBag.status=="fail")
+                            {
+                            foreach(var error in ViewBag.errors)
+                            {
+                                //If there are any errors for a field...
+                                if(@error.Errors.Count > 0)
+                                {
+                                    // We show the first error for that field
+                                    <p>@error.Errors[0].ErrorMessage</p>
+                                }
+                            }
+                            }
+                        }
+                </div>
+                <div>
+                    @{
+                        if(@ViewBag.status == "faillogin")
+                        {
+                            <p> Password is not correct </p>
+                        }
+                    }
+                </div>
+    </body>
+</html>
