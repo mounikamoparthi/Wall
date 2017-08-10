@@ -12,17 +12,34 @@
             </p>
         </form>
         
-                <div>
-                        @{
-                            if (@ViewBag.AllMessages != null)
-                            {
-                                @foreach(var message in @ViewBag.AllMessages)
-                            {
-                                    <p>@message["message"]</p>
-                                    <p>@message["firstName"]</p>
-                                    
-                                }
-                            }
-                            }
                         
-                </div>
+                        
+                            
+                                @foreach(var message in @ViewBag.AllMessages)
+                                {
+                                    <p>@message["message"]</p>
+                                    <p>@message["firstName"]</p> 
+                                    <p>@message["created_at"]</p>
+                                     
+                                        @foreach( var comment in @ViewBag.AllComments)
+                                        {
+                                            if(@comment["message_idmessage"] == @message["idmessages"])
+                                            {
+                                                <p>@comment["comment"]</p> 
+                                                <p>@comment["created_at"]</p>
+                                                <p> @comment["message_idmessage"]</p>
+                                               
+                                            }
+                                            
+                                        }
+                        
+                         <form action = "/comment" method="post">
+                          <input type = "hidden" name = 'message_idmessage' value = @message["idmessages"]>
+                            <textarea rows="5" cols="80"  name="comment"></textarea> <br> <br>
+                            <input type = "submit"  name = 'postcmt' value = 'Post the comment'> 
+                        </form>      
+                    }
+                                
+                        
+                            
+                        
