@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using loginreg.Connectors;
+using wall.Connectors;
 
 namespace wall.Controllers
 {
