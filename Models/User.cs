@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using System;
 
-namespace loginreg.Models{
+namespace wall.Models{
     
     public class User{
-        public int idUsers {get;set;}
+        public int idusers {get;set;}
 
         [Required]
         [MinLength(2)]
@@ -27,6 +28,15 @@ namespace loginreg.Models{
 
         [Compare("password", ErrorMessage = "Password confirmation must match Password")]
         public string confirmPassword { get; set; }
+        public DateTime created_at { get; set; }
+
+        public DateTime updated_at { get; set; }
+        public User()
+        {
+            created_at = DateTime.Now;
+            updated_at = DateTime.Now;
+            
+        }
 
         
     }

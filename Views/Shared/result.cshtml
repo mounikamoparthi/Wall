@@ -1,0 +1,28 @@
+@{
+            ViewData["Title"] = "Home Page";
+            <h2> Welcome @ViewBag.firstName </h2> 
+        }
+
+    <form action="/message" method ="post">
+            <p>
+            <textarea name = "message" rows = "5" cols = "80"></textarea>
+            </p><p>
+            <input type="hidden" name="action" value="postmsg">
+            <input type="submit" name = "postmsg" value = 'Post the message'>
+            </p>
+        </form>
+        
+                <div>
+                        @{
+                            if (@ViewBag.AllMessages != null)
+                            {
+                                @foreach(var message in @ViewBag.AllMessages)
+                            {
+                                    <p>@message["message"]</p>
+                                    <p>@message["firstName"]</p>
+                                    
+                                }
+                            }
+                            }
+                        
+                </div>
